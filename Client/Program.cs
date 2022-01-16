@@ -1,9 +1,12 @@
+using Client.DataAccess;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddDirectoryBrowser
+builder.Services.AddDbContext<DataContext>(s => s.UseSqlServer(builder.Configuration.GetConnectionString("LocalConnection")));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
