@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Udemy.Domain;
 
 namespace Udemy.Repository
 {
@@ -12,5 +13,6 @@ namespace Udemy.Repository
         {
 
         }
+        public DbSet<Customer> Csutomers { get; set; }
     }
 }
