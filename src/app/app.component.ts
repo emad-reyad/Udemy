@@ -11,13 +11,13 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.GetUsers();
+    this. ();
   }
   title = 'The Udemy App ';
   Users:any;
 
   GetUsers(){
-    this.http.get('https://localhost:5000/api/Customer').subscribe(
+    this.http.get('http://localhost:5000/api/Customer').subscribe(
     (response)=>{
       this.Users=response
     },
