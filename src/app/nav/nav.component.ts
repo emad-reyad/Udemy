@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../_Models/User';
 import { AccountService } from '../_Service/account.service';
 
 
@@ -15,6 +16,8 @@ export class NavComponent implements OnInit {
   LoginModel:any={};
   Logedin:boolean;
   ngOnInit(): void {
+    this.setCurrentUser();
+    this.CheckCurrentUser();
     
   }
  login(){
@@ -31,4 +34,18 @@ export class NavComponent implements OnInit {
  Logout(){
    this.Logedin=false;
  }
+
+CheckCurrentUser(){
+  
+  this.accountService.currentUser$.subscribe(user=>{
+    this.Logedin=!!user;
+  },  error=>{
+    console.log(error);    
+  });
+}
+
+setCurrentUser(){
+  const user:User =JSON.parse(localStorage.getItem('user'));
+  this.accountService.SetCurrentUser(user);
+}
 }

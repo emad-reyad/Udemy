@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, JsonpClientBackend } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { User } from './_Models/User';
+import { AccountService } from './_Service/account.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,10 +12,12 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.GetUsers();
+    this.GetUsers(); 
   }
   title = 'The Udemy App ';
   Users:any;
+
+
 
   GetUsers(){
     this.http.get('https://localhost:5000/api/Customer/GetAllCustomers').subscribe(
