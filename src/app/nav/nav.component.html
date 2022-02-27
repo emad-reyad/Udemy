@@ -1,1 +1,32 @@
-<p>nav works!</p>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container"> 
+      <a class="navbar-brand" href="#">Udemy Demo</a> 
+        <ul class="navbar-nav me-auto" *ngIf="Logedin">
+          <li class="nav-item">
+            <a class="nav-link"  href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">List</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Messages</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="Logout()">Logout</a>
+          </li>
+        </ul>
+        <div class="dropdown" *ngIf="Logedin" dropdown>
+          <a class="dropdown-toggle text-light" dropdownToggle>Welocme User</a>
+          <div class="dropdown-menu mt-3" *dropdownMenu>
+            <a  class="dropdown-item">Edit Profile</a>
+            <div class="dropdown-divider"></div>
+            <a  class="dropdown-item" (click)="Logout()">Logout</a>
+          </div>
+        </div>
+        <form *ngIf="!Logedin" #loginForm="ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit)="login()" autocomplete="false">
+          <input class="form-control me-2" type="text" placeholder="username" name="abc" [(ngModel)]="LoginModel.Username">
+          <input class="form-control me-2" type="password" placeholder="password" name="Password1" [(ngModel)]="LoginModel.Password">
+          <button class="btn btn-outline-success" type="submit">login</button>
+        </form>
+      </div>  
+  </nav>
