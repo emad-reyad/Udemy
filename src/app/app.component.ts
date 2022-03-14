@@ -11,8 +11,7 @@ export class AppComponent implements OnInit{
   constructor(){
   }
 
-  ngOnInit(): void {
-    
+  ngOnInit(): void { 
   }
   title = 'The Udemy App ';
 

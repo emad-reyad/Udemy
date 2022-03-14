@@ -20,7 +20,7 @@ export class AccountService {
           this.SetCurrentUser(user);
       })
     );
-  }
+  } 
 
   SetCurrentUser(user:User){
     this.currentUserSource.next(user);
