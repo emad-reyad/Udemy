@@ -21,4 +21,7 @@ Users:any;
   RegisterToggle(){
     this.RegisterMode=!this.RegisterMode;
   }
+  CancelRegistrationMode(event:boolean){
+    this.RegisterMode=false;
+  }
 }

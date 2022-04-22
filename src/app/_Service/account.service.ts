@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'; 
 import { ReplaySubject } from 'rxjs';
 import{map} from 'rxjs/operators';
 import { User } from '../_Models/User';
@@ -24,6 +24,17 @@ export class AccountService {
 
   SetCurrentUser(user:User){
     this.currentUserSource.next(user);
+  }
+
+  Register(reg:any){
+    return this.http.post(this.BaseUrl+'account/Register',reg).pipe(
+      map((user:User)=> {
+        if(user!=null){
+          localStorage.setItem('user',JSON.stringify(user));
+          this.currentUserSource.next(user);
+        }
+      })
+    )
   }
 
   Logout(){

@@ -1,4 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { User } from '../_Models/User';
+import { AccountService } from '../_Service/account.service';
 
 @Component({
   selector: 'app-register',
@@ -7,19 +10,34 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  @Input() UsersComeFromHome: any;
+  
+  @Output() CancelRegisteration=new EventEmitter();
   Modle:any={};
-
-  constructor() { }
+  RegUsers:User;
+  constructor(private http:HttpClient,private accountService:AccountService) { }
 
   ngOnInit(): void {
+    //this.GetUser();
   }
 
   Register(){
-    console.log(this.Modle);
+    this.accountService.Register(this.Modle).subscribe(response=>{
+    console.log(response)
+    },eror=>{
+       {
+      console.log(eror);  
+      }
+    })
   }
+ 
+    //GetUser(){
+    //  this.http.get('http://localhost:5001/api/GetAllCustomer').subscribe(users=>this.RegUsers=users);
+   // }
+
+
 Cancel(){
-  console.log('Canceled');
+  this.CancelRegisteration.emit(false)
+  console.log('Canceled'); 
 }
 
 }
